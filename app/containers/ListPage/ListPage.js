@@ -4,6 +4,7 @@
  * List all the posts
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
 import PostsList from 'components/PostsList';
@@ -12,10 +13,23 @@ import './style.scss';
 
 export default class ListPage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
+    const { fetchPosts, posts } = this.props;
+    if (!posts) {
+      fetchPosts();
+    }
+  }
 
   render() {
+    const { loading, error, posts } = this.props;
+    const postsListProps = {
+      loading,
+      error,
+      posts,
+    };
+
     return (
-      <div>fooobar
+      <div>
         <Helmet>
           <title>Frontpage</title>
           <meta name="description" content="A reddit clone ListPage" />
@@ -25,7 +39,7 @@ export default class ListPage extends React.PureComponent {
             <h2>Weclome to reddit</h2>
           </section>
           <section className="centered">
-            <PostsList />
+            <PostsList {...postsListProps} />
           </section>
         </div>
       </div>
@@ -34,4 +48,8 @@ export default class ListPage extends React.PureComponent {
 }
 
 ListPage.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  posts: PropTypes.array,
+  fetchPosts: PropTypes.func,
 };

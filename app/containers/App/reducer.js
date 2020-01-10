@@ -1,42 +1,34 @@
-import { LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR } from './constants';
+import { LOAD_POSTS_SUCCESS, LOAD_POSTS, LOAD_POSTS_ERROR } from './constants';
 
 // The initial state of the App
 export const initialState = {
   loading: false,
   error: false,
-  currentUser: false,
-  userData: {
-    repositories: false,
-  },
+  posts: [],
 };
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_REPOS: {
+    case LOAD_POSTS: {
       const newState = {
         ...state,
         loading: true,
         error: false,
-        userData: {
-          repositories: false,
-        },
+        posts: [],
       };
 
       return newState;
     }
-    case LOAD_REPOS_SUCCESS: {
+    case LOAD_POSTS_SUCCESS: {
       const newState = {
         ...state,
         loading: false,
-        userData: {
-          repositories: action.repos,
-        },
-        currentUser: action.username,
+        posts: action.posts,
       };
       return newState;
     }
 
-    case LOAD_REPOS_ERROR: {
+    case LOAD_POSTS_ERROR: {
       return { ...state, error: action.error, loading: false };
     }
     default:

@@ -1,1 +1,37 @@
-export { default } from './ListPage';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
+import injectSaga from 'utils/injectSaga';
+import {
+  makeSelectPosts,
+  makeSelectLoading,
+  makeSelectError,
+} from 'containers/App/selectors';
+import { loadPosts } from '../App/actions';
+import saga from './saga';
+import ListPage from './ListPage';
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchPosts: () => {
+    dispatch(loadPosts());
+  },
+});
+
+const mapStateToProps = createStructuredSelector({
+  posts: makeSelectPosts(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+const withSaga = injectSaga({ key: 'list-page', saga });
+
+export default compose(
+  withSaga,
+  withConnect,
+)(ListPage);
+export { mapDispatchToProps };

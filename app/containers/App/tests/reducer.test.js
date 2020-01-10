@@ -1,5 +1,5 @@
 import appReducer from '../reducer';
-import { loadRepos, reposLoaded, repoLoadingError } from '../actions';
+import { loadPosts, postsLoaded, postsLoadingError } from '../actions';
 
 describe('appReducer', () => {
   let state;
@@ -7,10 +7,7 @@ describe('appReducer', () => {
     state = {
       loading: false,
       error: false,
-      currentUser: false,
-      userData: {
-        repositories: false,
-      },
+      posts: [],
     };
   });
 
@@ -19,36 +16,34 @@ describe('appReducer', () => {
     expect(appReducer(undefined, {})).toEqual(expectedResult);
   });
 
-  it('should handle the loadRepos action correctly', () => {
+  it('should handle the loadPosts action correctly', () => {
     const expectedResult = {
       ...state,
       loading: true,
       error: false,
-      userData: { repositories: false },
+      posts: [],
     };
-    expect(appReducer(state, loadRepos())).toEqual(expectedResult);
+    expect(appReducer(state, loadPosts())).toEqual(expectedResult);
   });
 
-  it('should handle the reposLoaded action correctly', () => {
+  it('should handle the postsLoaded action correctly', () => {
     const fixture = [
       {
-        name: 'My Repo',
+        title: 'My post',
       },
     ];
-    const username = 'test';
     const expectedResult = {
       ...state,
       loading: false,
-      currentUser: username,
-      userData: { repositories: fixture },
+      posts: fixture,
     };
 
-    expect(appReducer(state, reposLoaded(fixture, username))).toEqual(
+    expect(appReducer(state, postsLoaded(fixture))).toEqual(
       expectedResult,
     );
   });
 
-  it('should handle the repoLoadingError action correctly', () => {
+  it('should handle the postsLoadingError action correctly', () => {
     const fixture = {
       msg: 'Not found',
     };
@@ -59,7 +54,7 @@ describe('appReducer', () => {
       loading: false,
     };
 
-    expect(appReducer(state, repoLoadingError(fixture))).toEqual(
+    expect(appReducer(state, postsLoadingError(fixture))).toEqual(
       expectedResult,
     );
   });

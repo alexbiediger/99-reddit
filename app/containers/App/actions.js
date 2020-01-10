@@ -16,48 +16,46 @@
  */
 
 import {
-  LOAD_REPOS,
-  LOAD_REPOS_SUCCESS,
-  LOAD_REPOS_ERROR,
+  LOAD_POSTS,
+  LOAD_POSTS_SUCCESS,
+  LOAD_POSTS_ERROR,
 } from './constants';
 
 /**
- * Load the repositories, this action starts the request saga
+ * Load the posts, this action starts the request saga
  *
- * @return {object} An action object with a type of LOAD_REPOS
+ * @return {object} An action object with a type of LOAD_POSTS
  */
-export function loadRepos() {
+export function loadPosts() {
   return {
-    type: LOAD_REPOS,
+    type: LOAD_POSTS,
   };
 }
 
 /**
- * Dispatched when the repositories are loaded by the request saga
+ * Dispatched when the posts are loaded by the request saga
  *
- * @param  {array} repos The repository data
- * @param  {string} username The current username
+ * @param  {array} posts The post data
  *
- * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
+ * @return {object}      An action object with a type of LOAD_POSTS_SUCCESS passing the posts
  */
-export function reposLoaded(repos, username) {
+export function postsLoaded(posts) {
   return {
-    type: LOAD_REPOS_SUCCESS,
-    repos,
-    username,
+    type: LOAD_POSTS_SUCCESS,
+    posts,
   };
 }
 
 /**
- * Dispatched when loading the repositories fails
+ * Dispatched when loading the posts fails
  *
  * @param  {object} error The error
  *
- * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
+ * @return {object}       An action object with a type of LOAD_POSTS_ERROR passing the error
  */
-export function repoLoadingError(error) {
+export function postsLoadingError(error) {
   return {
-    type: LOAD_REPOS_ERROR,
+    type: LOAD_POSTS_ERROR,
     error,
   };
 }

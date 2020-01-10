@@ -5,15 +5,14 @@ import Post from 'components/Post';
 
 import './style.scss';
 
-const PostItem = () => {
-  return (
-    <li>
-      <Post />
-    </li>
-  );
-};
+const PostItem = ({ post }) => (
+  <li className="post-item">
+    <Post post={post} />
+  </li>
+);
 
 PostItem.propTypes = {
+  post: PropTypes.object,
 };
 
 export default PostItem;
