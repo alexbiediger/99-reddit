@@ -2,7 +2,6 @@
 
 This is a short coding challenge aiming to clone a small subset of reddit site and features.
 
-
 ## Quick start
 
 1. Clone this repo
@@ -10,22 +9,33 @@ This is a short coding challenge aiming to clone a small subset of reddit site a
 3. Run `yarn` or `npm install` to install dependencies.<br />
 4. Run `npm start` to see the example app at `http://localhost:3000`.
 
+### Tests
+
+1. Run `npm run test`
+2. Open `coverage/lcov-report/index.html` in your favorite browser
+
+### Linting
+
+1. Run `npm run lint`
+
 ## Feature list
 
 ## TODO list
- - List post page
- - Post page
- - Sort (hot/new/controversial)
- - Infinite scroll
- - View switching
- - Up/downvotes
- - Look alike design
+
+- List post page
+- Post page
+- Sort (hot/new/controversial)
+- Infinite scroll
+- View switching
+- Up/downvotes
+- Look alike design
 
 ## Maybe do list
- - Isomorphism
+
+- Isomorphism
 
 ## Won't do list (out of scope)
- - Account handling
- - Search
- - Subreddit selection
 
+- Account handling
+- Search
+- Subreddit selection
