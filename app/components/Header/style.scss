@@ -1,8 +1,10 @@
 .header {
-  img {
+  > a {
+    font-size: 80px;
+    text-align: center;
     width: 100%;
-    margin: 0 auto;
     display: block;
+    margin: 40px auto 20px;
   }
 
   .nav-bar {
