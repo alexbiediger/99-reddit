@@ -29,9 +29,10 @@ import {
  *
  * @return {object} An action object with a type of LOAD_POSTS
  */
-export function loadPosts() {
+export function loadPosts(sort) {
   return {
     type: LOAD_POSTS,
+    sort,
   };
 }
 

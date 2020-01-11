@@ -11,8 +11,9 @@ import request from 'utils/request';
 /**
  * Reddit posts request/response handler
  */
-export function* getPosts() {
-  const requestURL = '/reddit-api';
+export function* getPosts(action) {
+  const sort = (action && action.sort) || '';
+  const requestURL = `/reddit-api/${sort}`;
 
   try {
     // Call our request helper (see 'utils/request')

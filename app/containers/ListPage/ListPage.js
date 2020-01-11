@@ -14,9 +14,9 @@ import './style.scss';
 export default class ListPage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
-    const { fetchPosts, posts } = this.props;
+    const { fetchPosts, posts, match } = this.props;
     if (!posts || !posts.length) {
-      fetchPosts();
+      fetchPosts(match.params.sort);
     }
   }
 
@@ -51,5 +51,6 @@ ListPage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   posts: PropTypes.array,
+  match: PropTypes.object,
   fetchPosts: PropTypes.func,
 };

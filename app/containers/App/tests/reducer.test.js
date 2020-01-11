@@ -17,6 +17,7 @@ describe('appReducer', () => {
       posts: [],
       post: false,
       comments: [],
+      sort: '',
     };
   });
 

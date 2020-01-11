@@ -12,8 +12,8 @@ import saga from './saga';
 import ListPage from './ListPage';
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPosts: () => {
-    dispatch(loadPosts());
+  fetchPosts: (sort) => {
+    dispatch(loadPosts(sort));
   },
 });
 

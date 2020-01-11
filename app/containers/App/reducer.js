@@ -11,6 +11,7 @@ import {
 export const initialState = {
   loading: false,
   error: false,
+  sort: '',
   posts: [],
   post: false,
   comments: [],

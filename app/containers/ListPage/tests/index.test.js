@@ -14,7 +14,7 @@ import { loadPosts } from '../../App/actions';
 describe('<ListPage />', () => {
   it('should render the posts list', () => {
     const renderedComponent = shallow(
-      <ListPage loading error={false} posts={[{}]} />,
+      <ListPage loading error={false} posts={[{}]} match={{ params: {} }} />,
     );
     expect(
       renderedComponent.contains(
@@ -25,7 +25,7 @@ describe('<ListPage />', () => {
 
   it('should render fetch the posts on mount', () => {
     const submitSpy = jest.fn();
-    mount(<ListPage fetchPosts={submitSpy} />);
+    mount(<ListPage fetchPosts={submitSpy} match={{ params: {} }} />);
     expect(submitSpy).toHaveBeenCalled();
   });
 
