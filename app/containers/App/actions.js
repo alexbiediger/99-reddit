@@ -16,6 +16,9 @@
  */
 
 import {
+  LOAD_POST,
+  LOAD_POST_SUCCESS,
+  LOAD_POST_ERROR,
   LOAD_POSTS,
   LOAD_POSTS_SUCCESS,
   LOAD_POSTS_ERROR,
@@ -56,6 +59,48 @@ export function postsLoaded(posts) {
 export function postsLoadingError(error) {
   return {
     type: LOAD_POSTS_ERROR,
+    error,
+  };
+}
+
+/**
+ * Load the post, this action starts the request saga
+ *
+ * @return {object} An action object with a type of LOAD_SUBREDDIT
+ */
+export function loadPost(url) {
+  return {
+    type: LOAD_POST,
+    url,
+  };
+}
+
+/**
+ * Dispatched when the post is loaded by the request saga
+ *
+ * @param  {array} posts The post data
+ * @param  {string} srName The current post name
+ *
+ * @return {object}      An action object with a type of LOAD_POST_SUCCESS passing the post
+ */
+export function postLoaded(post, comments) {
+  return {
+    type: LOAD_POST_SUCCESS,
+    post,
+    comments,
+  };
+}
+
+/**
+ * Dispatched when loading the post fails
+ *
+ * @param  {object} error The error
+ *
+ * @return {object}       An action object with a type of LOAD_POST_ERROR passing the error
+ */
+export function postLoadingError(error) {
+  return {
+    type: LOAD_POST_ERROR,
     error,
   };
 }

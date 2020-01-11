@@ -7,22 +7,32 @@ const selectRoute = (state) => state.router;
 
 const makeSelectLoading = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.loading
+  (globalState) => globalState.loading,
 );
 
 const makeSelectError = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.error
+  (globalState) => globalState.error,
 );
 
 const makeSelectPosts = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.posts
+  (globalState) => globalState.posts,
+);
+
+const makeSelectPost = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.post,
+);
+
+const makeSelectComments = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.comments,
 );
 
 const makeSelectLocation = () => createSelector(
   selectRoute,
-  (routeState) => routeState.location
+  (routeState) => routeState.location,
 );
 
 export {
@@ -30,5 +40,7 @@ export {
   makeSelectLoading,
   makeSelectError,
   makeSelectPosts,
+  makeSelectPost,
+  makeSelectComments,
   makeSelectLocation,
 };

@@ -5,7 +5,10 @@ import PostItem from '../index';
 
 describe('<PostItem />', () => {
   it('should render a list', () => {
-    const renderedComponent = shallow(<PostItem />);
+    const post = {
+      data: { permalink: '/r/permalink-fixture' },
+    };
+    const renderedComponent = shallow(<PostItem post={post} />);
     expect(renderedComponent.length).toEqual(1);
   });
 });

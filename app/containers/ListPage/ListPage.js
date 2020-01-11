@@ -15,7 +15,7 @@ export default class ListPage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
     const { fetchPosts, posts } = this.props;
-    if (!posts) {
+    if (!posts || !posts.length) {
       fetchPosts();
     }
   }

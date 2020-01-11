@@ -9,6 +9,9 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
+export const LOAD_POST = '99-reddit/App/LOAD_POST';
+export const LOAD_POST_SUCCESS = '99-reddit/App/LOAD_POST_SUCCESS';
+export const LOAD_POST_ERROR = '99-reddit/App/LOAD_POST_ERROR';
 export const LOAD_POSTS = '99-reddit/App/LOAD_POSTS';
 export const LOAD_POSTS_SUCCESS = '99-reddit/App/LOAD_POSTS_SUCCESS';
 export const LOAD_POSTS_ERROR = '99-reddit/App/LOAD_POSTS_ERROR';

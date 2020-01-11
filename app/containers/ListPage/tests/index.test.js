@@ -14,11 +14,11 @@ import { loadPosts } from '../../App/actions';
 describe('<ListPage />', () => {
   it('should render the posts list', () => {
     const renderedComponent = shallow(
-      <ListPage loading error={false} posts={[]} />,
+      <ListPage loading error={false} posts={[{}]} />,
     );
     expect(
       renderedComponent.contains(
-        <PostsList loading error={false} posts={[]} />,
+        <PostsList loading error={false} posts={[{}]} />,
       ),
     ).toEqual(true);
   });

@@ -1,34 +1,35 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { BrowserRouter as Router } from 'react-router-dom';
 
-import PostList from '../index';
+import PostPod from '../index';
 
-const renderComponent = (props = {}) => render(
-  <Router>
-    <PostList {...props} />
-  </Router>,
-);
+const renderComponent = (props = {}) => render(<PostPod {...props} />);
 
-describe.only('<PostList />', () => {
+describe.only('<PostPod />', () => {
   let postListProps;
 
   // Before each test reset the post data for safety
   beforeEach(() => {
     postListProps = {
-      posts: [
-        { data: { title: 'fixture-title', permalink: 'fixture-permalink' } },
-      ],
+      post: {},
       loading: false,
       error: false,
     };
   });
 
   it('should render 1 post', () => {
+    postListProps.post = {
+      kind: 't3',
+      data: {
+        title: 'fixture-title',
+        score: 1337,
+        author: 'fixture-author',
+        created_utc: 1578664094,
+        num_comments: 666,
+      },
+    };
     const renderedComponent = renderComponent({ ...postListProps });
-    expect(renderedComponent.text()).toContain(
-      postListProps.posts[0].data.title,
-    );
+    expect(renderedComponent.text()).toContain(postListProps.post.data.title);
   });
 
   it('should render loading', () => {
@@ -47,14 +48,5 @@ describe.only('<PostList />', () => {
     };
     const renderedComponent = renderComponent({ ...postListProps });
     expect(renderedComponent.is('.error')).toBe(true);
-  });
-
-  it('should render no posts', () => {
-    postListProps = {
-      ...postListProps,
-      posts: [],
-    };
-    const renderedComponent = renderComponent({ ...postListProps });
-    expect(renderedComponent.text()).toContain('No posts');
   });
 });

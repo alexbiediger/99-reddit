@@ -3,6 +3,8 @@ import {
   makeSelectLoading,
   makeSelectError,
   makeSelectPosts,
+  makeSelectPost,
+  makeSelectComments,
   makeSelectLocation,
 } from '../selectors';
 
@@ -52,6 +54,32 @@ describe('makeSelectPosts', () => {
       },
     };
     expect(postsSelector(mockedState)).toEqual(posts);
+  });
+});
+
+describe('makeSelectPost', () => {
+  const postsSelector = makeSelectPost();
+  it('should select the post', () => {
+    const post = { title: 'my post' };
+    const mockedState = {
+      global: {
+        post,
+      },
+    };
+    expect(postsSelector(mockedState)).toEqual(post);
+  });
+});
+
+describe('makeSelectComments', () => {
+  const postsSelector = makeSelectComments();
+  it('should select the comments', () => {
+    const comments = [{ title: 'my post' }];
+    const mockedState = {
+      global: {
+        comments,
+      },
+    };
+    expect(postsSelector(mockedState)).toEqual(comments);
   });
 });
 
