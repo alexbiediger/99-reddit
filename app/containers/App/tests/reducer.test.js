@@ -18,6 +18,8 @@ describe('appReducer', () => {
       post: false,
       comments: [],
       sort: '',
+      after: false,
+      resetPosts: false,
     };
   });
 
@@ -29,7 +31,7 @@ describe('appReducer', () => {
   it('should handle the loadPosts action correctly', () => {
     const expectedResult = {
       ...state,
-      loading: true,
+      resetPosts: true,
       error: false,
       posts: [],
     };
@@ -46,9 +48,10 @@ describe('appReducer', () => {
       ...state,
       loading: false,
       posts: fixture,
+      after: '',
     };
 
-    expect(appReducer(state, postsLoaded(fixture))).toEqual(expectedResult);
+    expect(appReducer(state, postsLoaded(fixture, ''))).toEqual(expectedResult);
   });
 
   it('should handle the postsLoadingError action correctly', () => {

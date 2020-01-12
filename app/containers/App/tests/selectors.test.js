@@ -6,6 +6,8 @@ import {
   makeSelectPost,
   makeSelectComments,
   makeSelectLocation,
+  makeSelectSort,
+  makeSelectAfter,
 } from '../selectors';
 
 describe('selectGlobal', () => {
@@ -93,5 +95,31 @@ describe('makeSelectLocation', () => {
       router,
     };
     expect(locationStateSelector(mockedState)).toEqual(router.location);
+  });
+});
+
+describe('makeSelectSort', () => {
+  const postsSelector = makeSelectSort();
+  it('should select the sort', () => {
+    const sort = [{ title: 'my post' }];
+    const mockedState = {
+      global: {
+        sort,
+      },
+    };
+    expect(postsSelector(mockedState)).toEqual(sort);
+  });
+});
+
+describe('makeSelectAfter', () => {
+  const postsSelector = makeSelectAfter();
+  it('should select the after', () => {
+    const after = [{ title: 'my post' }];
+    const mockedState = {
+      global: {
+        after,
+      },
+    };
+    expect(postsSelector(mockedState)).toEqual(after);
   });
 });

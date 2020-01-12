@@ -15,9 +15,19 @@ const makeSelectError = () => createSelector(
   (globalState) => globalState.error,
 );
 
+const makeSelectSort = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.sort,
+);
+
 const makeSelectPosts = () => createSelector(
   selectGlobal,
   (globalState) => globalState.posts,
+);
+
+const makeSelectAfter = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.after || '',
 );
 
 const makeSelectPost = () => createSelector(
@@ -39,7 +49,9 @@ export {
   selectGlobal,
   makeSelectLoading,
   makeSelectError,
+  makeSelectSort,
   makeSelectPosts,
+  makeSelectAfter,
   makeSelectPost,
   makeSelectComments,
   makeSelectLocation,

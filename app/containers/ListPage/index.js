@@ -2,24 +2,17 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import injectSaga from 'utils/injectSaga';
-import {
-  makeSelectPosts,
-  makeSelectLoading,
-  makeSelectError,
-} from 'containers/App/selectors';
+import { makeSelectPosts, makeSelectError } from 'containers/App/selectors';
 import { loadPosts } from '../App/actions';
 import saga from './saga';
 import ListPage from './ListPage';
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPosts: (sort) => {
-    dispatch(loadPosts(sort));
-  },
+  fetchPosts: (sort = '') => dispatch(loadPosts(sort)),
 });
 
 const mapStateToProps = createStructuredSelector({
   posts: makeSelectPosts(),
-  loading: makeSelectLoading(),
   error: makeSelectError(),
 });
 

@@ -7,25 +7,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
+import InfiniteScroll from 'react-infinite-scroller';
+
+import LoadingIndicator from 'components/LoadingIndicator';
 import PostsList from 'components/PostsList';
 
 import './style.scss';
 
 export default class ListPage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
-  componentDidMount() {
-    const { fetchPosts, posts, match } = this.props;
-    if (!posts || !posts.length) {
-      fetchPosts(match.params.sort);
-    }
-  }
 
   render() {
-    const { loading, error, posts } = this.props;
+    const {
+      error, posts, match, fetchPosts
+    } = this.props;
+
+    const loadMore = () => fetchPosts(match.params.sort);
+
     const postsListProps = {
-      loading,
       error,
       posts,
+      loadMore,
     };
 
     return (
@@ -39,7 +41,14 @@ export default class ListPage extends React.PureComponent {
             <h2>Weclome to reddit</h2>
           </section>
           <section className="centered">
-            <PostsList {...postsListProps} />
+            <InfiniteScroll
+              loadMore={loadMore}
+              pageStart={0}
+              hasMore
+              loader={<LoadingIndicator key={0} />}
+            >
+              <PostsList {...postsListProps} />
+            </InfiniteScroll>
           </section>
         </div>
       </div>

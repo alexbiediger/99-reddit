@@ -20,12 +20,13 @@ This is a short coding challenge aiming to clone a small subset of reddit site a
 
 ## Feature list
 
-## TODO list
-
 - List post page
 - Post page
 - Sort (hot/new/controversial)
 - Infinite scroll
+
+## TODO list
+
 - View switching
 - Up/downvotes
 - Look alike design

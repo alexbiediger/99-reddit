@@ -43,10 +43,11 @@ export function loadPosts(sort) {
  *
  * @return {object}      An action object with a type of LOAD_POSTS_SUCCESS passing the posts
  */
-export function postsLoaded(posts) {
+export function postsLoaded(posts, after) {
   return {
     type: LOAD_POSTS_SUCCESS,
     posts,
+    after,
   };
 }
 

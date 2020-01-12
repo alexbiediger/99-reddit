@@ -5,7 +5,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-import PostsList from 'components/PostsList';
+import InfiniteScroll from 'react-infinite-scroller';
+
 import ListPage from '../ListPage';
 import { mapDispatchToProps } from '../index';
 
@@ -16,16 +17,18 @@ describe('<ListPage />', () => {
     const renderedComponent = shallow(
       <ListPage loading error={false} posts={[{}]} match={{ params: {} }} />,
     );
-    expect(
-      renderedComponent.contains(
-        <PostsList loading error={false} posts={[{}]} />,
-      ),
-    ).toEqual(true);
+    expect(renderedComponent.find(InfiniteScroll).length).toEqual(1);
   });
 
   it('should render fetch the posts on mount', () => {
     const submitSpy = jest.fn();
-    mount(<ListPage fetchPosts={submitSpy} match={{ params: {} }} />);
+    const mountedComponent = mount(
+      <ListPage fetchPosts={submitSpy} match={{ params: {} }} />,
+    );
+    mountedComponent
+      .find(InfiniteScroll)
+      .instance()
+      .props.loadMore();
     expect(submitSpy).toHaveBeenCalled();
   });
 
@@ -40,8 +43,8 @@ describe('<ListPage />', () => {
       it('should dispatch loadPosts when called', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
-        result.fetchPosts();
-        expect(dispatch).toHaveBeenCalledWith(loadPosts());
+        result.fetchPosts('');
+        expect(dispatch).toHaveBeenCalledWith(loadPosts(''));
       });
     });
   });

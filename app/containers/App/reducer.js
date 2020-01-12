@@ -13,18 +13,23 @@ export const initialState = {
   error: false,
   sort: '',
   posts: [],
+  after: false,
   post: false,
+  resetPosts: false,
   comments: [],
 };
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_POSTS: {
+      const resetPosts = action.sort !== state.sort;
+
       const newState = {
         ...state,
-        loading: true,
         error: false,
-        posts: [],
+        resetPosts,
+        after: resetPosts ? false : state.after,
+        sort: action.sort === undefined ? state.sort : action.sort,
       };
 
       return newState;
@@ -33,7 +38,8 @@ function appReducer(state = initialState, action) {
       const newState = {
         ...state,
         loading: false,
-        posts: action.posts,
+        posts: (state.resetPosts ? [] : state.posts).concat(action.posts),
+        after: action.after,
       };
       return newState;
     }

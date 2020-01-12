@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { makeSelectSort } from 'containers/App/selectors';
 import { loadPosts } from '../App/actions';
-
 import Header from './Header';
 
 const mapDispatchToProps = (dispatch) => ({
@@ -11,7 +11,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+  sort: makeSelectSort(),
+});
 
 const withConnect = connect(
   mapStateToProps,

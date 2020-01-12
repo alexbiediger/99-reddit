@@ -2,9 +2,12 @@
  * Gets the repositories of the user from Github
  */
 
-import { call, put, takeLatest } from 'redux-saga/effects';
+import {
+  call, put, select, takeLatest
+} from 'redux-saga/effects';
 import { LOAD_POSTS } from 'containers/App/constants';
 import { postsLoaded, postsLoadingError } from 'containers/App/actions';
+import { makeSelectAfter } from 'containers/App/selectors';
 
 import request from 'utils/request';
 
@@ -13,12 +16,13 @@ import request from 'utils/request';
  */
 export function* getPosts(action) {
   const sort = (action && action.sort) || '';
-  const requestURL = `/reddit-api/${sort}`;
+  const after = yield select(makeSelectAfter());
+  const requestURL = `/reddit-api/${sort}/${after && `?after=${after}`}`;
 
   try {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL);
-    yield put(postsLoaded(response.data.children));
+    yield put(postsLoaded(response.data.children, response.data.after));
   } catch (err) {
     yield put(postsLoadingError(err));
   }

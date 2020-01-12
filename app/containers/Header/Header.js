@@ -6,25 +6,26 @@ import './style.scss';
 export default class Header extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { changeSort } = this.props;
+    const { sort, changeSort } = this.props;
+    const links = [
+      ['Hot', ''],
+      ['New', 'new'],
+      ['Controversial', 'controversial'],
+    ];
+    const navbar = links.map(([label, value]) => (
+      <Link
+        key={value}
+        className={`router-link ${sort === value ? 'active' : ''}`}
+        to={`/${value}`}
+        onClick={changeSort(value)}
+      >
+        {label}
+      </Link>
+    ));
     return (
       <div className="header">
         <a href="/">REDDIT!</a>
-        <div className="nav-bar">
-          <Link className="router-link" to="/" onClick={changeSort('')}>
-            Hot
-          </Link>
-          <Link className="router-link" to="/new" onClick={changeSort('new')}>
-            New
-          </Link>
-          <Link
-            className="router-link"
-            to="/controversial"
-            onClick={changeSort('controversial')}
-          >
-            Controversial
-          </Link>
-        </div>
+        <div className="nav-bar">{navbar}</div>
       </div>
     );
   }
@@ -32,4 +33,5 @@ export default class Header extends React.PureComponent {
 
 Header.propTypes = {
   changeSort: PropTypes.func,
+  sort: PropTypes.string,
 };

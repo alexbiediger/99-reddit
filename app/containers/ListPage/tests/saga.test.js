@@ -18,6 +18,9 @@ describe('getPosts Saga', () => {
   beforeEach(() => {
     getPostsGenerator = getPosts();
 
+    const selectDescriptor = getPostsGenerator.next().value;
+    expect(selectDescriptor).toMatchSnapshot();
+
     const callDescriptor = getPostsGenerator.next().value;
     expect(callDescriptor).toMatchSnapshot();
   });

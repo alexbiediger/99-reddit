@@ -24,7 +24,7 @@ const PostsList = ({ loading, error, posts }) => {
     ));
   } else {
     // Otherwise render a single component
-    content = <li>No posts!</li>;
+    content = false;
   }
 
   return (
