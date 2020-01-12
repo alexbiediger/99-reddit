@@ -24,7 +24,7 @@ const CommentsList = ({ loading, error, comments }) => {
   }
 
   return (
-    <div className="posts-list-wrapper">
+    <div className="comments-list-wrapper">
       <ul>{content}</ul>
     </div>
   );

@@ -1,0 +1,14 @@
+.comments-list-wrapper {
+  background: var(--base-alt-bg-color);
+  margin: 0 15px;
+  padding: 15px 30px 15px 0;
+  border: 1px solid var(--base-border-color);
+  border-radius: 4px;
+
+  ul {
+    list-style: none;
+  }
+  li {
+    margin: 15px 0;
+  }
+}

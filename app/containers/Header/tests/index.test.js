@@ -7,7 +7,9 @@ import { loadPosts } from '../../App/actions';
 
 describe('<Header />', () => {
   it('should render a div', () => {
-    const renderedComponent = shallow(<Header changeSort={() => {}} />);
+    const renderedComponent = shallow(
+      <Header changeSort={() => {}} sort="new" />,
+    );
     expect(renderedComponent.length).toEqual(1);
   });
 

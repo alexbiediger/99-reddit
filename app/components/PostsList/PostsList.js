@@ -15,16 +15,13 @@ const PostsList = ({ loading, error, posts }) => {
     return <div className="error">Something went wrong, please try again!</div>;
   }
 
-  let content = <div></div>;
+  let content;
 
   // If we have posts, render them
   if (posts && posts.length) {
     content = posts.map((post) => (
       <PostItem key={`post-${post.data.name}`} post={post} />
     ));
-  } else {
-    // Otherwise render a single component
-    content = false;
   }
 
   return (

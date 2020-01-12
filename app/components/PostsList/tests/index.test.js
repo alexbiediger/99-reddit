@@ -17,7 +17,14 @@ describe.only('<PostList />', () => {
   beforeEach(() => {
     postListProps = {
       posts: [
-        { data: { title: 'fixture-title', permalink: 'fixture-permalink' } },
+        {
+          data: {
+            title: 'fixture-title',
+            permalink: 'fixture-permalink',
+            thumbnail: 'fixture-thumbnail',
+            url: 'fixture-url',
+          },
+        },
       ],
       loading: false,
       error: false,
@@ -47,14 +54,5 @@ describe.only('<PostList />', () => {
     };
     const renderedComponent = renderComponent({ ...postListProps });
     expect(renderedComponent.is('.error')).toBe(true);
-  });
-
-  it('should render no posts', () => {
-    postListProps = {
-      ...postListProps,
-      posts: [],
-    };
-    const renderedComponent = renderComponent({ ...postListProps });
-    expect(renderedComponent.text()).toContain('No posts');
   });
 });

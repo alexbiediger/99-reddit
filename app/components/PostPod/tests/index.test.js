@@ -26,6 +26,8 @@ describe.only('<PostPod />', () => {
         author: 'fixture-author',
         created_utc: 1578664094,
         num_comments: 666,
+        thumbnail: 'fixture-thumbnail',
+        url: 'fixture-url',
       },
     };
     const renderedComponent = renderComponent({ ...postListProps });

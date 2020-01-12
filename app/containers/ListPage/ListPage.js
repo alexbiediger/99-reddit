@@ -38,7 +38,7 @@ export default class ListPage extends React.PureComponent {
         </Helmet>
         <div className="list-page">
           <section className="centered">
-            <h2>Weclome to reddit</h2>
+            <h2>Popular posts</h2>
           </section>
           <section className="centered">
             <InfiniteScroll

@@ -1,0 +1,21 @@
+.comments-list-item {
+  font-size: 15px;
+  ul {
+    border-left: 1px solid var(--base-alt-border-color);
+    cursor: pointer;
+    li {
+      cursor: auto;
+    }
+  }
+}
+.comments-list-item__aside {
+  font-size: 12px;
+  color: var(--base-alt-border-color);
+}
+.comments-list-item__posted-by {
+  color: var(--base-link-color);
+}
+.comments-list-item__body {
+  white-space: pre-line;
+  margin-bottom: 10px;
+}
