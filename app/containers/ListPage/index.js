@@ -12,9 +12,7 @@ import saga from './saga';
 import ListPage from './ListPage';
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPosts: (sort = '') => {
-    return dispatch(loadPosts(sort));
-  },
+  fetchPosts: (sort = '') => dispatch(loadPosts(sort)),
 });
 
 const mapStateToProps = createStructuredSelector({

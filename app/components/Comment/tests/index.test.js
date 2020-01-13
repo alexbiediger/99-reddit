@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render, shallow } from 'enzyme';
 
 import Comment from '../Comment';
 
@@ -19,7 +19,21 @@ describe.only('<Comment />', () => {
       author: 'fixture-author',
       created_utc: 1578664094,
       score: 666,
-      replies: false,
+      replies: {
+        data: {
+          children: [
+            {
+              data: {
+                body: 'fixture-body-child1',
+                author: 'fixture-author-child1',
+                created_utc: 1578664095,
+                score: 1337,
+                replies: false,
+              },
+            },
+          ],
+        },
+      },
     };
   });
 
@@ -34,8 +48,12 @@ describe.only('<Comment />', () => {
   });
 
   it('should render the comments score', () => {
-    const renderedComponent = renderComponent({ comment });
+    let renderedComponent = renderComponent({ comment });
     expect(renderedComponent.text()).toContain(comment.score);
+    renderedComponent = renderComponent({
+      comment: { ...comment, score: 1337 },
+    });
+    expect(renderedComponent.text()).toContain(`${(1337 / 1000).toFixed(0)}k`);
   });
 
   it('should render the comments author', () => {
@@ -53,5 +71,21 @@ describe.only('<Comment />', () => {
   it('should render the comments body', () => {
     const renderedComponent = renderComponent({ comment });
     expect(renderedComponent.text()).toContain(comment.body);
+  });
+
+  it("should hide comment's replies with btn click", () => {
+    const component = shallow(<Comment {...{ comment }} />);
+
+    component
+      .find('.comments-list-item__hide-btn')
+      .first()
+      .prop('onClick')();
+    expect(component.find('.comments-list-item').hasClass('hide')).toBe(true);
+
+    component
+      .find('.comments-list-item__show-btn')
+      .first()
+      .prop('onClick')();
+    expect(component.find('.comments-list-item').hasClass('hide')).toBe(false);
   });
 });
