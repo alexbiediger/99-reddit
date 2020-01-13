@@ -52,7 +52,11 @@ const Post = ({ post }) => {
       {thumbnail}
       <div className="post__title">{post.data.title}</div>
       <div className="post__body">{post.data.selftext}</div>
-      <a className="post__link" href={post.data.url}>
+      <a
+        className="post__link"
+        onClick={(evt) => evt.stopPropagation()}
+        href={post.data.url}
+      >
         {urlLabel}
       </a>
       {preview}
