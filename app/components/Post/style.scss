@@ -17,11 +17,12 @@
 
 .post__upvotes {
   position: absolute;
+  top: 0;
   left: 0;
   font-size: 14px;
   text-align: right;
   width: 30px;
-  top: 25px;
+  padding-top: 25px;
 }
 .post__title {
   font-weight: bold;
@@ -105,6 +106,111 @@
     display: block;
   }
 }
+
+.list-page.mode-classic,
+.list-page.mode-compact {
+  .post {
+    margin: 0;
+    border-radius: 0px;
+    border-bottom-width: 0;
+    font-size: 12px;
+    .post__preview {
+      display: none;
+    }
+    .post__link {
+      font-size: 11px;
+    }
+    .post__num-comments {
+      font-size: 11px;
+      background-position: 1px -1px;
+    }
+
+    &.post_hint-default .post__num-comments {
+      margin-left: -4px;
+    }
+  }
+
+  & .post-item:hover .post {
+    border-bottom-width: 1px;
+  }
+  & .post-item:first-child .post {
+    border-radius: 4px 4px 0 0;
+  }
+}
+
+.list-page.mode-classic {
+  .post {
+    min-height: 100px;
+  }
+  .post__thumbnail {
+    display: block;
+    float: left;
+    height: 60px;
+    width: 80px;
+    border: 0;
+    object-fit: cover;
+    margin: 3px 10px 0 2px;
+  }
+  .post__num-comments {
+    clear: none;
+    margin-left: 89px;
+  }
+}
+.list-page.mode-compact {
+  .post {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 60px;
+    border-color: black;
+    &:hover {
+      border-color: var(--base-alt-border-color);
+    }
+  }
+
+  & .post-item:hover + .post-item .post {
+    border-top-width: 0;
+  }
+
+  .post__upvotes {
+    display: flex;
+    padding: 0 10px 0 0;
+    height: 100%;
+    width: 50px;
+    justify-content: flex-end;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-right: 1px solid var(--separator-color);
+  }
+
+  .post__aside {
+    order: 1;
+    flex-basis: 100%;
+    font-size: 10px;
+  }
+  .post__subreddit {
+    font-weight: normal;
+  }
+
+  .post__thumbnail {
+    display: none;
+  }
+
+  .post__title {
+    font-size: 14px;
+  }
+  .post__link,
+  .post__title,
+  .post__num-comments {
+    display: inline-block;
+  }
+  .post__link {
+    padding-left: 5px;
+    vertical-align: bottom;
+    width: auto;
+    max-width: 200px;
+  }
+}
+
 @media (max-width: 576px) {
   .post_hint-image .post__preview {
     margin-left: -10px;
@@ -114,5 +220,15 @@
   }
   .post__thumbnail {
     margin-top: 10px;
+  }
+
+  .list-page.mode-classic,
+  .list-page.mode-compact {
+    .post .post__num-comments {
+      clear: both;
+      margin: 0 -3px;
+      padding-top: 2px;
+      background-position: 0 1px;
+    }
   }
 }

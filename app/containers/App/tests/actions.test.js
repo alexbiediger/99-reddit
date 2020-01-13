@@ -1,4 +1,5 @@
 import {
+  CHANGE_MODE,
   LOAD_POSTS,
   LOAD_POSTS_SUCCESS,
   LOAD_POSTS_ERROR,
@@ -8,6 +9,7 @@ import {
 } from '../constants';
 
 import {
+  changeMode,
   loadPosts,
   postsLoaded,
   postsLoadingError,
@@ -17,6 +19,17 @@ import {
 } from '../actions';
 
 describe('App Actions', () => {
+  describe('changeMode', () => {
+    it('should return the correct type', () => {
+      const expectedResult = {
+        type: CHANGE_MODE,
+        mode: 'classic',
+      };
+
+      expect(changeMode('classic')).toEqual(expectedResult);
+    });
+  });
+
   describe('loadPosts', () => {
     it('should return the correct type', () => {
       const expectedResult = {

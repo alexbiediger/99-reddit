@@ -23,7 +23,7 @@ describe('<ListPage />', () => {
   it('should render fetch the posts on mount', () => {
     const submitSpy = jest.fn();
     const mountedComponent = mount(
-      <ListPage fetchPosts={submitSpy} match={{ params: {} }} />,
+      <ListPage fetchPosts={submitSpy} match={{ params: { sort: 'new' } }} />,
     );
     mountedComponent
       .find(InfiniteScroll)
@@ -40,10 +40,17 @@ describe('<ListPage />', () => {
         expect(result.fetchPosts).toBeDefined();
       });
 
+      it('should dispatch sorted loadPosts when called', () => {
+        const dispatch = jest.fn();
+        const result = mapDispatchToProps(dispatch);
+        result.fetchPosts('new');
+        expect(dispatch).toHaveBeenCalledWith(loadPosts('new'));
+      });
+
       it('should dispatch loadPosts when called', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
-        result.fetchPosts('');
+        result.fetchPosts();
         expect(dispatch).toHaveBeenCalledWith(loadPosts(''));
       });
     });

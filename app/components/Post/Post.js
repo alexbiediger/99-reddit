@@ -43,10 +43,10 @@ const Post = ({ post }) => {
 
   const urlLabel = post.data.url.replace(/https?:\/\/(www.)?/, '');
   return (
-    <div className={`post post_hint-${postHint}`}>
+    <div className={`post post_hint-${postHint || 'default'}`}>
       <aside className="post__aside">
         <b className="post__subreddit">r/{post.data.subreddit}</b> • Posted by{' '}
-        {post.data.author} <span className="post__date">{dateStr}</span>
+        {post.data.author} • <span className="post__date">{dateStr}</span>
       </aside>
       <div className="post__posted-by"></div>
       {thumbnail}
@@ -60,7 +60,9 @@ const Post = ({ post }) => {
         {urlLabel}
       </a>
       {preview}
-      <div className="post__upvotes">{formatK(post.data.score)}</div>
+      <div className="post__upvotes">
+        <span>{formatK(post.data.score)}</span>
+      </div>
       <div className="post__num-comments">
         {formatK(post.data.num_comments)}
       </div>

@@ -10,12 +10,15 @@ import ViewCompact from './images/view-compact.svg';
 export default class Header extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { sort, changeSort } = this.props;
+    const {
+      mode, sort, changeSort, changeMode
+    } = this.props;
     const links = [
       ['Hot', ''],
       ['New', 'new'],
       ['Controversial', 'controversial'],
     ];
+
     const navbar = links.map(([label, value]) => (
       <Link
         key={value}
@@ -26,23 +29,31 @@ export default class Header extends React.PureComponent {
         {label}
       </Link>
     ));
+
+    const viewModes = [
+      ['Card', 'card', ViewCard],
+      ['Classic', 'classic', ViewClassic],
+      ['Compact', 'compact', ViewCompact],
+    ];
+    const views = viewModes.map(([label, value, icon]) => (
+      <button
+        key={value}
+        type="button"
+        title={label}
+        className={mode === value && 'active'}
+        onClick={changeMode(value)}
+      >
+        <img src={icon} alt={label} />
+      </button>
+    ));
+
     return (
       <div className="header">
         <a className="nav-banner" href="/">
           <img src={Alien} alt="99 Reddit Logo" />
           99 Reddit
         </a>
-        <div className="nav-views">
-          <button type="button" title="Card">
-            <img src={ViewCard} alt="Card" />
-          </button>
-          <button type="button" title="Classic">
-            <img src={ViewClassic} alt="Classic" />
-          </button>
-          <button type="button" title="Compact">
-            <img src={ViewCompact} alt="Compact" />
-          </button>
-        </div>
+        <div className="nav-views">{views}</div>
         <div className="nav-bar">{navbar}</div>
       </div>
     );
@@ -52,4 +63,6 @@ export default class Header extends React.PureComponent {
 Header.propTypes = {
   changeSort: PropTypes.func,
   sort: PropTypes.string,
+  mode: PropTypes.string,
+  changeMode: PropTypes.func,
 };

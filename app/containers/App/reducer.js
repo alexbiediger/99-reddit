@@ -1,4 +1,5 @@
 import {
+  CHANGE_MODE,
   LOAD_POST_SUCCESS,
   LOAD_POST,
   LOAD_POST_ERROR,
@@ -9,6 +10,7 @@ import {
 
 // The initial state of the App
 export const initialState = {
+  mode: 'card',
   loading: false,
   error: false,
   sort: '',
@@ -21,6 +23,15 @@ export const initialState = {
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_MODE: {
+      const newState = {
+        ...state,
+        mode: action.mode,
+      };
+
+      return newState;
+    }
+
     case LOAD_POSTS: {
       const resetPosts = action.sort !== state.sort;
 

@@ -6,6 +6,7 @@ import {
   makeSelectPost,
   makeSelectComments,
   makeSelectLocation,
+  makeSelectMode,
   makeSelectSort,
   makeSelectAfter,
 } from '../selectors';
@@ -98,16 +99,29 @@ describe('makeSelectLocation', () => {
   });
 });
 
+describe('makeSelectMode', () => {
+  const postsSelector = makeSelectMode();
+  it('should select the mode', () => {
+    const mode = 'compact';
+    const mockedState = {
+      global: {
+        mode,
+      },
+    };
+    expect(postsSelector(mockedState)).toEqual(mode);
+  });
+});
+
 describe('makeSelectSort', () => {
-  const postsSelector = makeSelectSort();
+  const sortSelector = makeSelectSort();
   it('should select the sort', () => {
-    const sort = [{ title: 'my post' }];
+    const sort = 'new';
     const mockedState = {
       global: {
         sort,
       },
     };
-    expect(postsSelector(mockedState)).toEqual(sort);
+    expect(sortSelector(mockedState)).toEqual(sort);
   });
 });
 

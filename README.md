@@ -24,12 +24,12 @@ This is a short coding challenge aiming to clone a small subset of reddit site a
 - Post page
 - Sort (hot/new/controversial)
 - Infinite scroll
+- View switching
+- Look alike design
 
 ## TODO list
 
-- View switching
 - Up/downvotes
-- Look alike design
 
 ## Maybe do list
 
@@ -40,3 +40,11 @@ This is a short coding challenge aiming to clone a small subset of reddit site a
 - Account handling
 - Search
 - Subreddit selection
+
+## Misc
+
+### How to debug tests
+
+1. Drop a `debugger` statement in the code to debug
+2. Open chrome at url `chrome://inspect`
+3. Run `node --inspect-brk ./node_modules/jest-cli/bin/jest.js --runInBand app/components/Post/tests/index.test.js`

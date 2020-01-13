@@ -19,7 +19,7 @@ export default class ListPage extends React.PureComponent {
 
   render() {
     const {
-      error, posts, match, fetchPosts
+      error, mode, posts, match, fetchPosts
     } = this.props;
 
     const loadMore = () => fetchPosts(match.params.sort);
@@ -36,7 +36,7 @@ export default class ListPage extends React.PureComponent {
           <title>Frontpage</title>
           <meta name="description" content="A reddit clone ListPage" />
         </Helmet>
-        <div className="list-page">
+        <div className={`list-page mode-${mode}`}>
           <section className="centered">
             <h2>Popular posts</h2>
           </section>
@@ -61,5 +61,6 @@ ListPage.propTypes = {
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   posts: PropTypes.array,
   match: PropTypes.object,
+  mode: PropTypes.string,
   fetchPosts: PropTypes.func,
 };

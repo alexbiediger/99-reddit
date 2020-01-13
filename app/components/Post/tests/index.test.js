@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render, shallow } from 'enzyme';
 
 import Post from '../Post';
 
@@ -88,5 +88,15 @@ describe.only('<Post />', () => {
     expect(renderedComponent.find('.post__preview source').prop('src')).toBe(
       post.data.media.reddit_video.fallback_url,
     );
+  });
+
+  it('should stop propagation on link click', () => {
+    const submitSpy = jest.fn();
+
+    const component = shallow(<Post {...{ post }} />);
+    const a = component.find('.post__link').first();
+    a.prop('onClick')({ stopPropagation: submitSpy });
+
+    expect(submitSpy).toHaveBeenCalled();
   });
 });

@@ -3,6 +3,7 @@ import {
   loadPosts,
   postsLoaded,
   postsLoadingError,
+  changeMode,
   loadPost,
   postLoaded,
   postLoadingError,
@@ -17,6 +18,7 @@ describe('appReducer', () => {
       posts: [],
       post: false,
       comments: [],
+      mode: 'card',
       sort: '',
       after: false,
       resetPosts: false,
@@ -26,6 +28,14 @@ describe('appReducer', () => {
   it('should return the initial state', () => {
     const expectedResult = state;
     expect(appReducer(undefined, {})).toEqual(expectedResult);
+  });
+
+  it('should handle the changeMode action correctly', () => {
+    const expectedResult = {
+      ...state,
+      mode: 'classic',
+    };
+    expect(appReducer(state, changeMode('classic'))).toEqual(expectedResult);
   });
 
   it('should handle the loadPosts action correctly', () => {

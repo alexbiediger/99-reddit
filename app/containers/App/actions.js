@@ -16,6 +16,7 @@
  */
 
 import {
+  CHANGE_MODE,
   LOAD_POST,
   LOAD_POST_SUCCESS,
   LOAD_POST_ERROR,
@@ -23,6 +24,18 @@ import {
   LOAD_POSTS_SUCCESS,
   LOAD_POSTS_ERROR,
 } from './constants';
+
+/**
+ * Changes view mode
+ *
+ * @return {object} An action object with a type of CHANGE_MODE
+ */
+export function changeMode(mode) {
+  return {
+    type: CHANGE_MODE,
+    mode,
+  };
+}
 
 /**
  * Load the posts, this action starts the request saga
