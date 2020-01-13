@@ -5,3 +5,9 @@ h2 {
   max-width: 800px;
   margin: 0 auto;
 }
+
+@media (max-width: 576px) {
+  .list-page {
+    margin: 0 10px;
+  }
+}

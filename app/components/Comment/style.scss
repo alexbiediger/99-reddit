@@ -4,7 +4,7 @@
     border-left: 1px solid var(--base-alt-border-color);
     cursor: pointer;
     li {
-      cursor: auto;
+      cursor: unset;
     }
   }
 }
@@ -18,4 +18,13 @@
 .comments-list-item__body {
   white-space: pre-line;
   margin-bottom: 10px;
+}
+
+@media (max-width: 576px) {
+  .comments-list-wrapper ul {
+    padding-left: 15px;
+  }
+  .comments-list-item {
+    font-size: 14px;
+  }
 }

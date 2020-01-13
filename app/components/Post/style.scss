@@ -85,6 +85,7 @@
 .post__preview {
   border-radius: 6px;
   display: none;
+  max-width: 100%;
 }
 .post__thumbnail {
   display: none;
@@ -99,8 +100,19 @@
 .post_hint-image,
 .post_hint-hosted-video {
   .post__preview {
-    height: 400px;
+    max-height: 400px;
     margin: 7px auto;
     display: block;
+  }
+}
+@media (max-width: 576px) {
+  .post_hint-image .post__preview {
+    margin-left: -10px;
+  }
+  .post__date {
+    display: block;
+  }
+  .post__thumbnail {
+    margin-top: 10px;
   }
 }

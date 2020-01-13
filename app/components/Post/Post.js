@@ -45,8 +45,8 @@ const Post = ({ post }) => {
   return (
     <div className={`post post_hint-${postHint}`}>
       <aside className="post__aside">
-        <b className="post__subreddit">r/{post.data.subreddit}</b> • Posted by
-        {post.data.author} {dateStr}
+        <b className="post__subreddit">r/{post.data.subreddit}</b> • Posted by{' '}
+        {post.data.author} <span className="post__date">{dateStr}</span>
       </aside>
       <div className="post__posted-by"></div>
       {thumbnail}
