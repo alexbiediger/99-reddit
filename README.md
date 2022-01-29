@@ -2,6 +2,12 @@
 
 This is a short coding challenge aiming to clone a small subset of reddit site and features.
 
+## Demo
+
+https://reddit-99.herokuapp.com/ 
+
+It will take a few seconds to load initially, it shuts down then cold start when not used in a while.
+
 ## Quick start
 
 1. Clone this repo
